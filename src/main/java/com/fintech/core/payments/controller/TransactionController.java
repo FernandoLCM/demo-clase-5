@@ -7,6 +7,7 @@ import com.fintech.core.payments.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
+import org.owasp.encoder.Encode;
 import org.springframework.web.bind.annotation.*;
 import jakarta.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
@@ -106,7 +107,7 @@ public class TransactionController {
         
         logger.info("Search query executed: " + searchQuery);
         
-        return ResponseEntity.ok("Search completed for: " + query);
+        return ResponseEntity.ok("Search completed for: " + Encode.forHtml(query));
     }
     
     @PostMapping("/import")
